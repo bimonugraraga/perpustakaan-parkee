@@ -1,0 +1,32 @@
+{
+  "name": "perpustakaan-parkee",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bimonugraraga/perpustakaan-parkee.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bimonugraraga/perpustakaan-parkee/issues"
+  },
+  "homepage": "https://github.com/bimonugraraga/perpustakaan-parkee#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jest": "^29.1.2",
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0",
+    "sequelize": "^6.25.0",
+    "sequelize-cli": "^6.5.1",
+    "strong-params": "^1.0.0",
+    "supertest": "^6.3.0"
+  }
+}
