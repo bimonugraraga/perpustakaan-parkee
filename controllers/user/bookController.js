@@ -25,6 +25,24 @@ class UserBookController {
       next(error)
     }
   }
+
+  static returnBook = async(req, res, next) => {
+    try {
+      let {book_id} = req.params
+      let params = req.parameters
+      params = params.permit("email", "no_ktp").value()
+      params.book_id = +book_id
+
+      let returned = await UserBookService.returnBook(params, next)
+      if (returned){
+        res.status(200).json({
+          message: "Success Return Book"
+        })
+      }
+    } catch (error) {
+      next(error)
+    }
+  }
 }
 
 module.exports = UserBookController

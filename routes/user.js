@@ -6,5 +6,6 @@ const UserBookController = require('../controllers/user/bookController')
 router.post('/register', UserAuthProfileController.registerUser)
 router.get('/profile', UserAuthProfileController.getProfileUser)
 
-router.post('/borrow-book/:book_id', UserBookController.borrowBook)
+router.post('/book/:book_id/borrow', UserBookController.borrowBook)
+router.put('/book/:book_id/return', UserBookController.returnBook)
 module.exports = router

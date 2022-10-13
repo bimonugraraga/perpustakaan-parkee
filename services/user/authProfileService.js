@@ -21,11 +21,13 @@ class UserAuthProfileService {
             attributes: {exclude: ['createdAt', 'updatedAt']},
             include: {
               model: Book,
-              attributes: {exclude: ['createdAt', 'updatedAt', 'stocks']}
-            }
+              attributes: {exclude: ['createdAt', 'updatedAt', 'stocks']},
+            },
+            
           }
         ],
-        attributes: {exclude: ['createdAt', 'updatedAt']}
+        attributes: {exclude: ['createdAt', 'updatedAt']},
+        order: [[BookLog, 'id', 'DESC']]
       })
       if (!targetUser){
         throw {
@@ -33,7 +35,6 @@ class UserAuthProfileService {
           message: "User Not Found"
         }
       }
-
       return targetUser
     } catch (error) {
       next(error)

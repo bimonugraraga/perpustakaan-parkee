@@ -14,9 +14,60 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Book.init({
-    title: DataTypes.STRING,
-    isbn: DataTypes.STRING,
-    stocks: DataTypes.INTEGER
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Title is Required"
+        },
+        notEmpty: {
+          msg: "Title is Required"
+        },
+      }
+    },
+    isbn: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: {
+        args: true,
+        msg: "ISBN Has Been Taken"
+      },
+      validate: {
+        notNull: {
+          msg: "ISBN is Required"
+        },
+        notEmpty: {
+          msg: "ISBN is Required"
+        },
+        isUnique: async (value) => {
+          let target = await Book.findOne({
+            where: {
+              isbn: value
+            }
+          })
+          if (target){
+            throw new Error('ISBN Has Been Taken');
+          }
+        }
+      }
+    },
+    stocks: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Stocks is Required"
+        },
+        notEmpty: {
+          msg: "Stocks is Required"
+        },
+        min: {
+          args: 1,
+          msg: "Minimum Stocks Is 1"
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Book',
