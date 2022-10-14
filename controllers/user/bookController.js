@@ -31,6 +31,12 @@ class UserBookController {
       let {book_id} = req.params
       let params = req.parameters
       params = params.permit("email", "no_ktp").value()
+      if (!params.email || !params.no_ktp){
+        throw {
+          code: 400,
+          message: "Must Provide Email And KTP"
+        }
+      }
       params.book_id = +book_id
 
       let returned = await UserBookService.returnBook(params, next)

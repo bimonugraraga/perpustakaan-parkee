@@ -5,7 +5,12 @@ class AdminBookController {
     try {
       let params = req.parameters
       params = params.permit("title", "isbn", "stocks").value()
-      
+      if (!params.stocks || params.stocks < 1){
+        throw {
+          code: 400,
+          message: "Minimum Stocks Is 1"
+        }
+      }
       let created = await AdminBookService.createBook(params, next)
       if (created){
         res.status(201).json({
@@ -22,7 +27,7 @@ class AdminBookController {
       let params = req.parameters
       params = params.permit("title", "isbn", "stocks").value()
       
-      if (!params.stocks){
+      if (!params.stocks || params.stocks < 1){
         throw {
           code: 400,
           message: "Minimum Stocks Is 1"

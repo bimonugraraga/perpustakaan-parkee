@@ -74,6 +74,8 @@ class AdminBookService {
             [Op.iLike]: `%${params.status}%`
           }
         },
+        limit: params.limit,
+        offset: offset,
         order: [['id', 'DESC']],
         distinct:true
       })
